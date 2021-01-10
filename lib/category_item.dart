@@ -23,11 +23,7 @@ class CategoryItem extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: TextStyle(
-          fontSize: 17,
-          color: Colors.white.withOpacity(0.9),
-          fontWeight: FontWeight.bold,
-        ),
+        style: Theme.of(context).textTheme.headline1,
       ),
       alignment: Alignment.center,
     );
