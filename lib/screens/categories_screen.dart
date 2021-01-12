@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 import '../dummy_data.dart';
 import '../widgets/category_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
+  final scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: ScrollAppBar(
+        controller: scrollController,
         title: Text('MealsApp'),
       ),
       body: GridView(
-        padding: EdgeInsets.all(10),
+        controller: scrollController,
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 40),
         children: DUMMY_CATEGORIES
             .map(
               (category) => CategoryItem(

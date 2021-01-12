@@ -13,6 +13,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meals App',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          color: Colors.transparent,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Color.fromRGBO(20, 51, 51, 1)),
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                ),
+              ),
+        ),
         primaryColor: Colors.red,
         accentColor: Colors.yellow,
         canvasColor: Colors.white,

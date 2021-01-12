@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 import '../widgets/meal_item.dart';
 import '../dummy_data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
   static const routeName = '/category-meals';
+
+  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +21,12 @@ class CategoryMealsScreen extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: ScrollAppBar(
+        controller: scrollController,
         title: Text(title),
       ),
       body: ListView.builder(
+        controller: scrollController,
         itemBuilder: (ctx, index) {
           return MealItem(categoryMeals[index]);
         },
