@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../screens/meal_details_screen.dart';
 import '../models/meal.dart';
 
 class InfoRowItem extends StatelessWidget {
@@ -30,8 +32,6 @@ class MealItem extends StatelessWidget {
   final Meal mealData;
 
   MealItem(this.mealData);
-
-  void selectMeal() {}
 
   String get complexityText {
     switch (mealData.complexity) {
@@ -65,10 +65,15 @@ class MealItem extends StatelessWidget {
     }
   }
 
+  void selectMeal(BuildContext ctx) {
+    Navigator.of(ctx)
+        .pushNamed(MealDetailsScreen.routeName, arguments: mealData);
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Card(
