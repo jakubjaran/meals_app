@@ -34,9 +34,11 @@ class MyApp extends StatelessWidget {
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText1: TextStyle(
                 color: Color.fromRGBO(20, 51, 51, 1),
+                fontSize: 18,
               ),
               bodyText2: TextStyle(
                 color: Color.fromRGBO(20, 51, 51, 1),
+                fontSize: 18,
               ),
               headline1: TextStyle(
                 fontSize: 20,
