@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../screens/filters_screen.dart';
+
 class MainDrawerLink extends StatelessWidget {
   final IconData icon;
   final String title;
+  final String routeName;
 
-  MainDrawerLink({this.icon, this.title});
+  MainDrawerLink(this.icon, this.title, this.routeName);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,9 @@ class MainDrawerLink extends StatelessWidget {
               title,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
+            onTap: () {
+              Navigator.of(context).pushNamed(routeName);
+            },
           ),
           Divider(
             color: Colors.black,
@@ -45,12 +51,14 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           MainDrawerLink(
-            icon: Icons.restaurant,
-            title: 'Meals',
+            Icons.restaurant,
+            'Meals',
+            '/',
           ),
           MainDrawerLink(
-            icon: Icons.settings,
-            title: 'Filters',
+            Icons.settings,
+            'Filters',
+            FiltersScreen.routeName,
           ),
         ],
       ),
