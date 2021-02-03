@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
                 ),
               ),
         ),
-        primaryColor: Colors.red,
-        accentColor: Colors.yellow,
+        primaryColor: Colors.white,
+        accentColor: Colors.blue,
         canvasColor: Colors.white,
         fontFamily: 'RobotoCondensed',
         textTheme: ThemeData.light().textTheme.copyWith(

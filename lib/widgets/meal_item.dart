@@ -31,7 +31,9 @@ class InfoRowItem extends StatelessWidget {
 class MealItem extends StatelessWidget {
   final Meal mealData;
 
-  MealItem(this.mealData);
+  final Function removeMealHandler;
+
+  MealItem(this.mealData, this.removeMealHandler);
 
   String get complexityText {
     switch (mealData.complexity) {
@@ -67,7 +69,12 @@ class MealItem extends StatelessWidget {
 
   void selectMeal(BuildContext ctx) {
     Navigator.of(ctx)
-        .pushNamed(MealDetailsScreen.routeName, arguments: mealData);
+        .pushNamed(MealDetailsScreen.routeName, arguments: mealData)
+        .then((result) {
+      if (result != null) {
+        removeMealHandler(result);
+      }
+    });
   }
 
   @override
