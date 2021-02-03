@@ -22,7 +22,7 @@ class MainDrawerLink extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(routeName);
+              Navigator.of(context).pushReplacementNamed(routeName);
             },
           ),
           Divider(
