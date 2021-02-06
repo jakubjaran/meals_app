@@ -26,6 +26,8 @@ class _MyAppState extends State<MyApp> {
 
   List<Meal> _avaliableMeals = DUMMY_MEALS;
 
+  List<Meal> _favoriteMeals = [];
+
   void _setFilters(Map<String, bool> newFilters) {
     setState(() {
       _filters = newFilters;
@@ -45,6 +47,24 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String id) {
+    int existingIndex = _favoriteMeals.indexWhere((meal) => meal.id == id);
+
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == id));
+      });
+    }
+  }
+
+  bool _isFavorite(String id) {
+    return _favoriteMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -87,10 +107,11 @@ class _MyAppState extends State<MyApp> {
             ),
       ),
       routes: {
-        '/': (ctx) => TabsScreen(),
+        '/': (ctx) => TabsScreen(_favoriteMeals),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_avaliableMeals),
-        MealDetailsScreen.routeName: (ctx) => MealDetailsScreen(),
+        MealDetailsScreen.routeName: (ctx) =>
+            MealDetailsScreen(_toggleFavorite, _isFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
     );

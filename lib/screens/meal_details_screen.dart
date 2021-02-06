@@ -22,6 +22,11 @@ class SectionTitle extends StatelessWidget {
 class MealDetailsScreen extends StatelessWidget {
   static const routeName = '/meal-details';
 
+  final Function toggleFavorite;
+  final Function isFavorite;
+
+  MealDetailsScreen(this.toggleFavorite, this.isFavorite);
+
   @override
   Widget build(BuildContext context) {
     final mealData = ModalRoute.of(context).settings.arguments as Meal;
@@ -31,9 +36,11 @@ class MealDetailsScreen extends StatelessWidget {
         title: Text(mealData.title),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
+        child: Icon(
+          isFavorite(mealData.id) ? Icons.star : Icons.star_border,
+        ),
         onPressed: () {
-          Navigator.of(context).pop(mealData.id);
+          toggleFavorite(mealData.id);
         },
       ),
       body: SingleChildScrollView(
