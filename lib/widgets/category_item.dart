@@ -36,7 +36,10 @@ class CategoryItem extends StatelessWidget {
         ),
         child: Text(
           title,
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context)
+              .textTheme
+              .headline1
+              .copyWith(color: Colors.white),
         ),
         alignment: Alignment.center,
       ),

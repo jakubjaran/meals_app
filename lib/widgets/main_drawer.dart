@@ -44,10 +44,7 @@ class MainDrawer extends StatelessWidget {
             padding: EdgeInsets.only(top: 60),
             child: Text(
               'MealsApp',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline1
-                  .copyWith(color: Colors.black),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
           MainDrawerLink(
