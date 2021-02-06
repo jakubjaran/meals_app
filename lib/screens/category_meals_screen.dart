@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:scroll_app_bar/scroll_app_bar.dart';
 
 import '../widgets/meal_item.dart';
-import '../dummy_data.dart';
 import '../models/meal.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category-meals';
+
+  final List<Meal> avaliableMeals;
+
+  CategoryMealsScreen(this.avaliableMeals);
 
   @override
   _CategoryMealsScreenState createState() => _CategoryMealsScreenState();
 }
 
 class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
-  final scrollController = ScrollController();
-
   var _loadedInitData = false;
   String title;
   String categoryId;
@@ -28,7 +28,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
 
       title = routeArgs['title'];
       categoryId = routeArgs['id'];
-      categoryMeals = DUMMY_MEALS
+      categoryMeals = widget.avaliableMeals
           .where((meal) => meal.categories.contains(categoryId))
           .toList();
       _loadedInitData = true;
@@ -45,12 +45,10 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ScrollAppBar(
-        controller: scrollController,
+      appBar: AppBar(
         title: Text(title),
       ),
       body: ListView.builder(
-        controller: scrollController,
         itemBuilder: (ctx, index) {
           return MealItem(categoryMeals[index], removeMealHandler);
         },
